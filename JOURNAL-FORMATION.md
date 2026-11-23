@@ -95,6 +95,8 @@ Fichier prévu par Houssam : allow = Bash, Read, Edit, Write, Glob, Grep, WebFet
 | Autoriser un hôte réseau | `update_environment` | Carte d'approbation à chaque fois | Toute ouverture réseau de l'environnement est validée par l'humain, quel que soit le mode. |
 | Attacher le dépôt | `add_repo` | Passé sans carte ici | Peut demander une confirmation selon l'interface. |
 | Créer le projet Vercel | `mcp__Vercel__create_project` | 403 renvoyé par Vercel | Ce n'est pas une confirmation : c'est un droit manquant côté compte Vercel ou connecteur. |
+| Marquer le dépôt comme modèle (template) | `gh api PATCH repos/Houssk/recette` | `Repository settings writes are not permitted through this proxy. (HTTP 403)` | Les réglages d'un dépôt ne se modifient pas depuis une session cloud : case « Template repository » à cocher à la main. |
+| Ouvrir des pages dans Chrome | aucun outil | Aucun outil navigateur dans une session cloud | L'extension Claude in Chrome n'est disponible que dans l'application de bureau. |
 
 **Attention à la règle `deny`** : `Read(./.env.*)` interdit aussi de lire `.env.example`, que Claude doit pouvoir lire et modifier. Proposition : `deny = Read(./.env), Read(./.env.local), Read(./.env.*.local)`.
 
