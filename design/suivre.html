@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a1f4a">
+<title>Suivre les anomalies · Recette</title>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <span class="topbar-title">Recette</span>
+  </header>
+
+  <main class="page" id="contenu">
+    <h1 class="page-title">Suivre les anomalies</h1>
+
+    <!-- Message de succès après envoi (role=status, disparaît au changement d'écran) -->
+    <div class="alert alert-success" role="status" style="margin: var(--sp-3) 0 var(--sp-5)">
+      <span class="alert-icon" aria-hidden="true">✓</span>
+      <div>
+        <p class="alert-title">Anomalie A-024 envoyée</p>
+        <p>Elle apparaît en tête de liste avec le statut Nouvelle.</p>
+      </div>
+    </div>
+
+    <div class="filters">
+      <fieldset class="filter-group">
+        <legend>Statut</legend>
+        <div class="chips">
+          <button type="button" class="chip" aria-pressed="true">Tous <span class="count">12</span></button>
+          <button type="button" class="chip" aria-pressed="false"><span class="shape s-nouvelle" aria-hidden="true"></span> Nouvelle <span class="count">4</span></button>
+          <button type="button" class="chip" aria-pressed="false"><span class="shape s-encours" aria-hidden="true"></span> En cours <span class="count">3</span></button>
+          <button type="button" class="chip" aria-pressed="false"><span class="shape s-corrigee" aria-hidden="true"></span> Corrigée <span class="count">3</span></button>
+          <button type="button" class="chip" aria-pressed="false"><span aria-hidden="true">✓</span> Vérifiée <span class="count">2</span></button>
+        </div>
+      </fieldset>
+      <fieldset class="filter-group">
+        <legend>Gravité</legend>
+        <div class="chips">
+          <button type="button" class="chip" aria-pressed="false">Toutes</button>
+          <button type="button" class="chip" aria-pressed="true">Bloquante</button>
+          <button type="button" class="chip" aria-pressed="true">Majeure</button>
+          <button type="button" class="chip" aria-pressed="false">Mineure</button>
+        </div>
+      </fieldset>
+    </div>
+
+    <p class="result-count" role="status">5 anomalies · bloquantes et majeures · plus récentes d'abord</p>
+
+    <ul class="card-list">
+      <li>
+        <a class="card is-bloquante" href="detail.html">
+          <div class="card-body">
+            <span class="card-id">A-024</span>
+            <span class="card-title">Impossible d'enregistrer la fiche client</span>
+            <span class="badges">
+              <span class="badge badge-grave badge-grave-bloquante"><span class="shape" aria-hidden="true">▲</span>Bloquante</span>
+              <span class="badge badge-statut badge-statut-nouvelle"><span class="shape s-nouvelle" aria-hidden="true"></span>Nouvelle</span>
+            </span>
+            <span class="meta">Léa M. · <time datetime="2026-11-23T09:42">aujourd'hui, 9 h 42</time></span>
+          </div>
+          <span class="card-chevron" aria-hidden="true">›</span>
+        </a>
+      </li>
+      <li>
+        <a class="card is-bloquante" href="detail.html">
+          <div class="card-body">
+            <span class="card-id">A-021</span>
+            <span class="card-title">Le paiement par carte renvoie une page blanche après validation 3-D Secure</span>
+            <span class="badges">
+              <span class="badge badge-grave badge-grave-bloquante"><span class="shape" aria-hidden="true">▲</span>Bloquante</span>
+              <span class="badge badge-statut badge-statut-corrigee"><span class="shape s-corrigee" aria-hidden="true"></span>Corrigée</span>
+            </span>
+            <span class="meta">Inès D. · <time datetime="2026-11-21T14:32">21 nov., 14 h 32</time></span>
+          </div>
+          <span class="card-chevron" aria-hidden="true">›</span>
+        </a>
+      </li>
+      <li>
+        <a class="card" href="detail.html">
+          <div class="card-body">
+            <span class="card-id">A-019</span>
+            <span class="card-title">Le total du panier ne se met pas à jour après suppression d'un article</span>
+            <span class="badges">
+              <span class="badge badge-grave badge-grave-majeure"><span class="shape" aria-hidden="true">◆</span>Majeure</span>
+              <span class="badge badge-statut badge-statut-en-cours"><span class="shape s-encours" aria-hidden="true"></span>En cours</span>
+            </span>
+            <span class="meta">Sarah K. · <time datetime="2026-11-20T11:05">20 nov., 11 h 05</time></span>
+          </div>
+          <span class="card-chevron" aria-hidden="true">›</span>
+        </a>
+      </li>
+      <li>
+        <a class="card" href="detail.html">
+          <div class="card-body">
+            <span class="card-id">A-017</span>
+            <span class="card-title">Export PDF : le logo est déformé</span>
+            <span class="badges">
+              <span class="badge badge-grave badge-grave-majeure"><span class="shape" aria-hidden="true">◆</span>Majeure</span>
+              <span class="badge badge-statut badge-statut-verifiee"><span class="shape" aria-hidden="true">✓</span>Vérifiée</span>
+            </span>
+            <span class="meta">Léa M. · <time datetime="2026-11-18T16:20">18 nov., 16 h 20</time></span>
+          </div>
+          <span class="card-chevron" aria-hidden="true">›</span>
+        </a>
+      </li>
+      <li>
+        <a class="card" href="detail.html">
+          <div class="card-body">
+            <span class="card-id">A-012</span>
+            <span class="card-title">Libellé tronqué sur le bouton « Valider la commande »</span>
+            <span class="badges">
+              <span class="badge badge-grave badge-grave-mineure"><span class="shape" aria-hidden="true">▼</span>Mineure</span>
+              <span class="badge badge-statut badge-statut-nouvelle"><span class="shape s-nouvelle" aria-hidden="true"></span>Nouvelle</span>
+            </span>
+            <span class="meta">Inès D. · <time datetime="2026-11-15T10:12">15 nov., 10 h 12</time></span>
+          </div>
+          <span class="card-chevron" aria-hidden="true">›</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- ===== États de référence (pour le développeur, hors écran réel) ===== -->
+    <p class="ref-divider">Référence · état vide (aucun résultat)</p>
+    <div class="empty">
+      <div class="empty-icon" aria-hidden="true">◇</div>
+      <p class="empty-title">Aucune anomalie pour ces filtres</p>
+      <p>Essayez « Tous » ou une autre gravité.</p>
+      <button type="button" class="btn btn-secondary">Réinitialiser les filtres</button>
+    </div>
+
+    <p class="ref-divider">Référence · chargement</p>
+    <div aria-busy="true" aria-live="polite">
+      <p class="visually-hidden">Chargement des anomalies…</p>
+      <ul class="card-list" aria-hidden="true">
+        <li class="skeleton-card"><span class="skeleton skeleton-line" style="width:20%"></span><span class="skeleton skeleton-line" style="width:85%;height:18px"></span><span class="skeleton skeleton-line" style="width:50%;height:28px"></span></li>
+        <li class="skeleton-card"><span class="skeleton skeleton-line" style="width:20%"></span><span class="skeleton skeleton-line" style="width:70%;height:18px"></span><span class="skeleton skeleton-line" style="width:50%;height:28px"></span></li>
+      </ul>
+    </div>
+    <p class="ref-divider">Référence · bouton en cours d'envoi</p>
+    <button type="button" class="btn btn-primary btn-block btn-lg" aria-disabled="true">
+      <span class="spinner" aria-hidden="true"></span> Envoi en cours…
+    </button>
+  </main>
+
+  <nav class="tabbar" aria-label="Navigation principale">
+    <a class="tab" href="signaler.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+      Signaler
+    </a>
+    <a class="tab" href="suivre.html" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1.2" fill="currentColor"/><circle cx="4" cy="12" r="1.2" fill="currentColor"/><circle cx="4" cy="18" r="1.2" fill="currentColor"/></svg>
+      Suivre
+    </a>
+    <a class="tab" href="suivre.html?statut=corrigee">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>
+      À vérifier
+      <span class="tab-count">3<span class="visually-hidden"> en attente</span></span>
+    </a>
+  </nav>
+</div>
+</body>
+</html>

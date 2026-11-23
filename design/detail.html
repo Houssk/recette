@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a1f4a">
+<title>A-021 · Paiement par carte · Recette</title>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <a class="topbar-back" href="suivre.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+      Liste
+    </a>
+    <span class="topbar-title" style="font-family:var(--font-mono);font-size:var(--fs-base)">A-021</span>
+  </header>
+
+  <main class="page" id="contenu">
+    <div class="detail-head">
+      <h1 class="detail-title">Le paiement par carte renvoie une page blanche après 3-D Secure</h1>
+      <div class="badges">
+        <span class="badge badge-grave badge-grave-bloquante"><span class="shape" aria-hidden="true">▲</span>Bloquante</span>
+        <span class="badge badge-statut badge-statut-corrigee"><span class="shape s-corrigee" aria-hidden="true"></span>Corrigée</span>
+      </div>
+      <p class="meta">Signalée par Inès D. le <time datetime="2026-11-21T14:32">21 nov. 2026 à 14 h 32</time></p>
+    </div>
+
+    <!-- Bloc Vérifier : affiché seulement si statut = Corrigée -->
+    <section class="verify section" aria-labelledby="verifier-titre">
+      <h2 class="section-title" id="verifier-titre">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>
+        Vérifier la correction
+      </h2>
+      <p class="muted" style="margin-bottom: var(--sp-4)">Refaites les étapes ci-dessous, puis indiquez le résultat.</p>
+      <form class="stack" action="#" method="post">
+        <div class="field">
+          <label class="field-label" for="commentaire">Commentaire</label>
+          <p class="field-hint" id="commentaire-aide">Obligatoire pour rouvrir : dites ce qui ne marche toujours pas.</p>
+          <textarea class="textarea" id="commentaire" name="commentaire" rows="3" aria-describedby="commentaire-aide">Testé sur iPhone 13, Safari : le paiement passe et la page de confirmation s'affiche.</textarea>
+        </div>
+        <div class="btn-row">
+          <button type="submit" name="action" value="rouvrir" class="btn btn-danger">
+            <span aria-hidden="true">↺</span> Rouvrir
+          </button>
+          <button type="submit" name="action" value="verifiee" class="btn btn-success">
+            <span aria-hidden="true">✓</span> Vérifiée
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section class="section" aria-labelledby="capture-titre">
+      <h2 class="section-title" id="capture-titre">Capture</h2>
+      <figure class="capture" style="margin:0">
+        <a href="#capture-plein-ecran" aria-label="Agrandir la capture">
+          <svg viewBox="0 0 358 220" width="100%" role="img" aria-label="Capture : page blanche après validation 3-D Secure">
+            <rect width="358" height="220" fill="#ffffff"/>
+            <rect width="358" height="28" fill="#eceef5"/>
+            <circle cx="14" cy="14" r="4" fill="#767c9e"/><circle cx="28" cy="14" r="4" fill="#767c9e"/>
+            <rect x="48" y="8" width="220" height="12" rx="6" fill="#ffffff"/>
+            <text x="179" y="130" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#767c9e">(page vide)</text>
+            <rect x="120" y="160" width="118" height="6" rx="3" fill="#eceef5"/>
+          </svg>
+        </a>
+        <figcaption>photo-1121.jpg · ajoutée le 21 nov., 14 h 31 · toucher pour agrandir</figcaption>
+      </figure>
+    </section>
+
+    <section class="section" aria-labelledby="desc-titre">
+      <h2 class="section-title" id="desc-titre">Description</h2>
+      <dl class="dl panel">
+        <div>
+          <dt>Étapes pour reproduire</dt>
+          <dd>
+            <ol class="steps">
+              <li>Ajouter un article au panier</li>
+              <li>Payer par carte (carte de test 4000 0027 6000 3184)</li>
+              <li>Valider le code 3-D Secure</li>
+            </ol>
+          </dd>
+        </div>
+        <div>
+          <dt>Résultat attendu</dt>
+          <dd>La page « Commande confirmée » s'affiche.</dd>
+        </div>
+        <div>
+          <dt>Résultat obtenu</dt>
+          <dd>Page blanche, aucun message. La commande n'apparaît pas dans « Mes commandes ».</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="section" aria-labelledby="histo-titre">
+      <h2 class="section-title" id="histo-titre">Historique</h2>
+      <ol class="timeline">
+        <li>
+          <span class="dot" aria-hidden="true" style="border-color:var(--success)"></span>
+          <time datetime="2026-11-22T17:05">22 nov. 2026 · 17 h 05</time>
+          <p class="what">Passée en <strong><span class="shape s-corrigee" aria-hidden="true"></span> Corrigée</strong> par Marc (dév.)</p>
+          <p class="comment">Correctif du retour 3-DS déployé en recette (v1.8.3).</p>
+        </li>
+        <li>
+          <span class="dot" aria-hidden="true" style="border-color:var(--warning)"></span>
+          <time datetime="2026-11-21T16:10">21 nov. 2026 · 16 h 10</time>
+          <p class="what">Passée en <strong><span class="shape s-encours" aria-hidden="true"></span> En cours</strong> par Marc (dév.)</p>
+        </li>
+        <li>
+          <span class="dot" aria-hidden="true"></span>
+          <time datetime="2026-11-21T14:32">21 nov. 2026 · 14 h 32</time>
+          <p class="what">Signalée <strong><span class="shape s-nouvelle" aria-hidden="true"></span> Nouvelle</strong> par Inès D.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ===== État de référence : erreur sur Rouvrir sans commentaire ===== -->
+    <p class="ref-divider">Référence · Rouvrir sans commentaire</p>
+    <div class="field">
+      <label class="field-label" for="commentaire-err">Commentaire</label>
+      <p class="field-hint" id="commentaire-err-aide">Obligatoire pour rouvrir : dites ce qui ne marche toujours pas.</p>
+      <textarea class="textarea" id="commentaire-err" rows="3" aria-invalid="true" aria-describedby="commentaire-err-aide commentaire-err-msg"></textarea>
+      <p class="field-error" id="commentaire-err-msg">Ajoutez un commentaire pour rouvrir l'anomalie.</p>
+    </div>
+    <p class="ref-divider">Référence · après « Vérifiée »</p>
+    <div class="alert alert-success" role="status">
+      <span class="alert-icon" aria-hidden="true">✓</span>
+      <div>
+        <p class="alert-title">A-021 vérifiée</p>
+        <p>Le bloc Vérifier disparaît ; le statut devient <strong>✓ Vérifiée</strong>.</p>
+      </div>
+    </div>
+  </main>
+
+  <nav class="tabbar" aria-label="Navigation principale">
+    <a class="tab" href="signaler.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+      Signaler
+    </a>
+    <a class="tab" href="suivre.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1.2" fill="currentColor"/><circle cx="4" cy="12" r="1.2" fill="currentColor"/><circle cx="4" cy="18" r="1.2" fill="currentColor"/></svg>
+      Suivre
+    </a>
+    <a class="tab" href="suivre.html?statut=corrigee" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>
+      À vérifier
+      <span class="tab-count">3<span class="visually-hidden"> en attente</span></span>
+    </a>
+  </nav>
+</div>
+</body>
+</html>

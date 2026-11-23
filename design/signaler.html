@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a1f4a">
+<title>Signaler une anomalie · Recette</title>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <span class="topbar-title">Recette</span>
+  </header>
+
+  <main class="page" id="contenu">
+    <h1 class="page-title">Signaler une anomalie</h1>
+    <p class="page-lead">Les champs marqués <span aria-hidden="true">*</span><span class="visually-hidden">d'un astérisque</span> sont obligatoires.</p>
+
+    <!-- Résumé d'erreurs : affiché après un envoi refusé, reçoit le focus -->
+    <div class="alert alert-error" role="alert" tabindex="-1" style="margin-bottom: var(--sp-5)">
+      <span class="alert-icon" aria-hidden="true">!</span>
+      <div>
+        <p class="alert-title">1 champ à corriger</p>
+        <p><a class="alert-link" href="#titre">Titre : indiquez un titre court</a></p>
+      </div>
+    </div>
+
+    <form class="stack" action="#" method="post" enctype="multipart/form-data" novalidate>
+
+      <!-- Champ en erreur : aria-invalid + aria-describedby -->
+      <div class="field">
+        <label class="field-label" for="titre">Titre <span class="req" aria-hidden="true">*</span></label>
+        <p class="field-hint" id="titre-aide">Ce qui ne marche pas, en une phrase.</p>
+        <input class="input" id="titre" name="titre" type="text" required aria-required="true"
+               aria-invalid="true" aria-describedby="titre-aide titre-erreur" value="">
+        <p class="field-error" id="titre-erreur">Indiquez un titre court (5 caractères minimum).</p>
+      </div>
+
+      <fieldset class="segmented">
+        <legend>Gravité <span class="req" aria-hidden="true" style="color:var(--danger)">*</span></legend>
+        <div class="segmented-options">
+          <div class="segmented-option is-bloquante">
+            <input type="radio" id="g-bloquante" name="gravite" value="bloquante" required>
+            <label for="g-bloquante"><span class="shape" aria-hidden="true">▲</span>Bloquante</label>
+          </div>
+          <div class="segmented-option is-majeure">
+            <input type="radio" id="g-majeure" name="gravite" value="majeure" checked>
+            <label for="g-majeure"><span class="shape" aria-hidden="true">◆</span>Majeure</label>
+          </div>
+          <div class="segmented-option is-mineure">
+            <input type="radio" id="g-mineure" name="gravite" value="mineure">
+            <label for="g-mineure"><span class="shape" aria-hidden="true">▼</span>Mineure</label>
+          </div>
+        </div>
+        <p class="field-hint" style="margin-top: var(--sp-2)">Bloquante : impossible de continuer le test.</p>
+      </fieldset>
+
+      <div class="field">
+        <label class="field-label" for="etapes">Étapes pour reproduire <span class="req" aria-hidden="true">*</span></label>
+        <p class="field-hint" id="etapes-aide">Une étape par ligne.</p>
+        <textarea class="textarea" id="etapes" name="etapes" rows="4" required aria-describedby="etapes-aide">1. Ouvrir la fiche client
+2. Cliquer sur « Enregistrer »</textarea>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="attendu">Résultat attendu <span class="req" aria-hidden="true">*</span></label>
+        <textarea class="textarea" id="attendu" name="attendu" rows="3" required>La fiche est enregistrée et un message de confirmation s'affiche.</textarea>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="obtenu">Résultat obtenu <span class="req" aria-hidden="true">*</span></label>
+        <textarea class="textarea" id="obtenu" name="obtenu" rows="3" required></textarea>
+      </div>
+
+      <div class="field">
+        <span class="field-label" id="capture-label">Capture d'écran <span class="muted" style="font-weight:400">(facultatif)</span></span>
+        <div class="photo-input">
+          <input type="file" id="capture" name="capture" accept="image/*" capture="environment" aria-labelledby="capture-label capture-btn">
+          <label class="photo-drop" for="capture" id="capture-btn">
+            <svg class="icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+            Prendre une photo
+          </label>
+        </div>
+        <!-- État après sélection -->
+        <div class="photo-preview">
+          <svg class="thumb" viewBox="0 0 72 96" aria-hidden="true"><rect width="72" height="96" fill="#1a1f4a"/><rect x="8" y="12" width="56" height="8" rx="2" fill="#eef0fd"/><rect x="8" y="28" width="40" height="6" rx="2" fill="#767c9e"/><rect x="8" y="40" width="56" height="20" rx="3" fill="#fdecea"/><rect x="8" y="70" width="56" height="12" rx="3" fill="#4353df"/></svg>
+          <div class="grow">
+            <p style="font-weight:600">photo-1123.jpg</p>
+            <p class="meta">1,2 Mo · prête à envoyer</p>
+          </div>
+          <button type="button" class="btn btn-danger" style="padding:0 var(--sp-3)" aria-label="Retirer la photo photo-1123.jpg">Retirer</button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block btn-lg">
+        Envoyer l'anomalie
+      </button>
+    </form>
+  </main>
+
+  <nav class="tabbar" aria-label="Navigation principale">
+    <a class="tab" href="signaler.html" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+      Signaler
+    </a>
+    <a class="tab" href="suivre.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1.2" fill="currentColor"/><circle cx="4" cy="12" r="1.2" fill="currentColor"/><circle cx="4" cy="18" r="1.2" fill="currentColor"/></svg>
+      Suivre
+    </a>
+    <a class="tab" href="suivre.html?statut=corrigee">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>
+      À vérifier
+      <span class="tab-count">3<span class="visually-hidden"> en attente</span></span>
+    </a>
+  </nav>
+</div>
+</body>
+</html>
