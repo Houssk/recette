@@ -18,7 +18,8 @@ Application de formation (onboarding d'Inès) : suivi des anomalies de recette, 
 - Avant chaque push : `npm run build` doit passer.
 
 ## Connecteurs
-- Vercel : **ne jamais passer `teamId` ni `slug`** (compte Hobby : 403). « repo_not_found » = dépôt non autorisé dans l'app GitHub Vercel.
+- Vercel : création de projet impossible par le connecteur sur ce compte (403 avec ou sans `teamId`) : le projet se crée à la main sur vercel.com/new. Lecture (déploiements, journaux) : sans `teamId`. « repo_not_found » = dépôt non autorisé dans l'app GitHub Vercel.
+- Réseau de la session cloud : l'hôte `mqqprlnimoymixqfaymg.supabase.co` doit être autorisé dans l'environnement pour lancer les tests ; Node passe par le proxy avec `NODE_USE_ENV_PROXY=1 NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt`.
 - Supabase : la Site URL de l'authentification se règle à la main dans le tableau de bord.
 
 ## Commandes
