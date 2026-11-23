@@ -380,3 +380,101 @@ a { color: var(--primary); }
 /* Ajouts application (filtres en liens) */
 .chip[aria-current="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
 .chip[aria-current="true"]::before { content: "✓"; }
+
+/* ==========================================================================
+   Thème épuré (direction Claude Design, 23/11/2026)
+   Inspiré des consoles Vercel / Supabase : fond quasi noir, Geist, bordures
+   fines, un seul accent vert réservé à « Corrigée » et « Vérifiée ».
+   Les jetons ci-dessous remplacent ceux du thème clair plus haut.
+   ========================================================================== */
+:root {
+  color-scheme: dark;
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --ink: #ededed;              /* 16,9:1 sur --bg */
+  --ink-2: #a1a1a1;            /* 7,6:1 sur --bg */
+  --navy: #ededed;
+  --border: #262626;
+  --border-strong: #3d3d3d;
+  --primary: #ededed;          /* action principale : bouton clair */
+  --primary-strong: #ffffff;
+  --primary-tint: #1a1a1a;
+  --primary-ink: #ededed;
+  --on-primary: #0a0a0a;
+  --success: #3ecf8e;          /* 10,4:1 sur --bg */
+  --success-bg: rgba(62, 207, 142, 0.12);
+  --success-ink: #3ecf8e;
+  --danger: #ff6369;           /* 6,6:1 sur --bg */
+  --danger-bg: rgba(229, 72, 77, 0.14);
+  --danger-ink: #ff6369;
+  --warning: #f5a524;
+  --warning-bg: rgba(245, 165, 36, 0.14);
+  --warning-ink: #f5a524;
+  --neutral-bg: #1a1a1a;
+  --neutral-ink: #a1a1a1;
+  --focus: #3ecf8e;
+  --grave-bloquante-bg: var(--danger-bg);
+  --grave-bloquante-ink: var(--danger-ink);
+  --grave-majeure-bg: var(--warning-bg);
+  --grave-majeure-ink: var(--warning-ink);
+  --grave-majeure-border: transparent;
+  --grave-mineure-bg: var(--neutral-bg);
+  --grave-mineure-ink: var(--neutral-ink);
+  --statut-nouvelle-bg: transparent;
+  --statut-nouvelle-ink: var(--ink);
+  --statut-encours-bg: var(--warning-bg);
+  --statut-encours-ink: var(--warning-ink);
+  --statut-corrigee-bg: var(--success-bg);
+  --statut-corrigee-ink: var(--success-ink);
+  --statut-verifiee-bg: var(--success);
+  --statut-verifiee-ink: #0a0a0a;
+  --font: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, Menlo, monospace;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 12px;
+  --shadow-1: none;
+  --shadow-nav: 0 -1px 0 #1f1f1f;
+}
+body { -webkit-font-smoothing: antialiased; }
+h1, .page-title, .detail-title { letter-spacing: -0.03em; font-weight: 600; }
+.topbar { background: var(--bg); border-bottom: 1px solid #1f1f1f; color: var(--ink); }
+.topbar-title { color: var(--ink); font-weight: 600; font-size: 15px; letter-spacing: -0.01em; }
+.topbar-back { color: var(--ink-2); }
+.topbar-back:focus-visible { outline-color: var(--focus); }
+.input, .textarea, .select { background: var(--surface); border: 1px solid #333333; color: var(--ink); }
+[aria-invalid="true"].input, [aria-invalid="true"].textarea { background: var(--surface); }
+.btn { font-weight: 600; }
+.btn-success { color: #0a0a0a; }
+.btn-danger { background: transparent; color: var(--ink); border-color: #333333; }
+.btn-secondary { background: transparent; color: var(--ink); border-color: #333333; }
+.segmented-option label { background: var(--surface); border-color: #333333; color: var(--ink-2); }
+.segmented-option input:checked + label { border-width: 1px; border-color: var(--ink); background: var(--ink); color: #0a0a0a; }
+.photo-drop { background: transparent; color: var(--ink); border-style: dashed; border-color: #3d3d3d; }
+.badge { font-weight: 500; border-radius: var(--r-sm); }
+.badge-statut-nouvelle { border: 1px solid #333333; }
+.chip { background: transparent; border-color: #333333; color: var(--ink-2); font-weight: 500; }
+.chip[aria-pressed="true"], .chip[aria-current="true"] { background: var(--ink); border-color: var(--ink); color: #0a0a0a; }
+.chip .count { font-family: var(--font-mono); }
+.card { background: var(--bg); border-color: var(--border); }
+.card:hover { background: var(--surface); }
+.card.is-bloquante { border-left-color: var(--border); }
+.card-id, .timeline time { font-family: var(--font-mono); color: #8f8f8f; }
+.panel, .empty, .skeleton-card, .capture, .photo-preview { background: var(--surface); border-color: var(--border); }
+.verify { border: 1px solid #2e2e2e; background: linear-gradient(180deg, #111111, #0d0d0d); }
+.dl dt { color: #8f8f8f; font-weight: 500; }
+.timeline .dot { background: var(--bg); border-width: 2px; }
+.timeline .comment { background: var(--surface); }
+.tabbar { background: var(--bg); }
+.tab { color: #8f8f8f; }
+.tab[aria-current="page"] { color: var(--ink); }
+.tab[aria-current="page"]::before { background: var(--ink); }
+.tab-count { background: var(--success); color: #0a0a0a; font-family: var(--font-mono); }
+.alert-success { background: var(--success-bg); border-color: rgba(62, 207, 142, 0.3); color: var(--ink); }
+.alert-error { background: var(--danger-bg); border-color: rgba(255, 99, 105, 0.3); color: var(--ink); }
+.alert-success .alert-icon { background: var(--success); color: #0a0a0a; }
+.alert-error .alert-icon { background: var(--danger); color: #0a0a0a; }
+.empty-title { color: var(--ink); }
+.chip { text-decoration: none; }
+.badge-grave { text-transform: none; letter-spacing: 0; }
+.card.is-bloquante { border-left-width: 1px; }

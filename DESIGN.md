@@ -184,3 +184,16 @@ Les composants complets sont dans `design/tokens.css`.
   --shadow-nav: 0 -1px 0 var(--border), 0 -4px 16px rgba(26, 31, 74, 0.06);
 }
 ```
+
+---
+
+## Mise à jour du 23/11/2026 : direction épurée (Claude Design)
+
+Remplace l'apparence ci-dessus (les structures et les règles d'accessibilité restent). Canevas de référence : https://claude.ai/artifact/GXcxCSDVsrBZVnNxfMMLTQ (privé, à partager depuis le menu Share).
+
+- Esprit consoles Vercel / Supabase : fond `#0a0a0a`, surfaces `#111111`, bordures `#262626` / `#333333`, texte `#ededed` et `#a1a1a1`.
+- Police Geist (paquet npm `geist`, auto-hébergée), Geist Mono pour les numéros A-001 et les horodatages.
+- Un seul accent vert `#3ecf8e`, réservé à « Corrigée » et « Vérifiée ». Rouge `#ff6369` et ambre `#f5a524` seulement pour les gravités.
+- Action principale : bouton clair `#ededed` sur fond noir.
+- Implémentation : bloc « Thème épuré » à la fin de `app/globals.css`, qui redéfinit les jetons.
+- Plan de test relancé après le changement : 11/11 réussis, cibles ≥ 48 px conservées.
