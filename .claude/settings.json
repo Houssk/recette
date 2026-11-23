@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash", "Read", "Edit", "Write", "Glob", "Grep", "WebFetch", "WebSearch", "Agent", "Skill",
+      "mcp__Supabase", "mcp__Vercel", "mcp__Resend"
+    ],
+    "deny": [
+      "Read(./.env)", "Read(./.env.local)", "Read(./.env.*.local)"
+    ]
+  }
+}
