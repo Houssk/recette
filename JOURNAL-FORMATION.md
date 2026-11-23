@@ -83,6 +83,25 @@ _en attente de l'URL Vercel et de la clé._
 
 ---
 
+## Demandes de confirmation et refus que `.claude/settings.json` ne supprime pas
+
+Fichier prévu par Houssam : allow = Bash, Read, Edit, Write, Glob, Grep, WebFetch, WebSearch, Agent, Skill, mcp__Supabase, mcp__Vercel, mcp__Resend ; deny = Read(./.env), Read(./.env.*). Relevé pendant ce passage (session en mode automatique) :
+
+| Action | Outil | Ce qui s'est passé | Pourquoi aucun réglage ne le supprime |
+|---|---|---|---|
+| Créer le projet Supabase | `mcp__Supabase__create_project` | Refusé tant que l'humain n'a pas écrit son accord | Le garde-fou du mode automatique juge les actions qui coûtent ou créent des ressources externes ; il lui faut un accord écrit dans la conversation, une règle `allow` ne suffit pas. |
+| Écrire `.claude/settings.json` | `Write` | Refusé (`Undermining Oversight`) | Claude ne modifie jamais ses propres autorisations, même avec `Write` autorisé. |
+| Créer le dépôt GitHub | `gh repo create` | 403 côté GitHub | Une session cloud est limitée aux dépôts attachés. |
+| Autoriser un hôte réseau | `update_environment` | Carte d'approbation à chaque fois | Toute ouverture réseau de l'environnement est validée par l'humain, quel que soit le mode. |
+| Attacher le dépôt | `add_repo` | Passé sans carte ici | Peut demander une confirmation selon l'interface. |
+| Créer le projet Vercel | `mcp__Vercel__create_project` | 403 renvoyé par Vercel | Ce n'est pas une confirmation : c'est un droit manquant côté compte Vercel ou connecteur. |
+
+**Attention à la règle `deny`** : `Read(./.env.*)` interdit aussi de lire `.env.example`, que Claude doit pouvoir lire et modifier. Proposition : `deny = Read(./.env), Read(./.env.local), Read(./.env.*.local)`.
+
+Les demandes restantes (déploiement, Resend) seront ajoutées en fin de passage.
+
+---
+
 ## Ce qu'Inès doit préparer en plus de sa checklist
 
 _complété en fin de passage._
