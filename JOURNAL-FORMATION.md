@@ -104,6 +104,66 @@ Les demandes restantes (déploiement, Resend) seront ajoutées en fin de passage
 
 ---
 
+## Méthode en 4 étapes (dépôt modèle `Houssk/formation-modele`) : prompts 1 à 3
+
+Joués pour « Recette » le 23/11/2026, après la version 1. Résultat : `docs/1-INTENTION.md`, `docs/2-SPEC.md`, `docs/3-DESIGN.md`.
+
+### Prompt 1 : l'intention
+- **Passé** : le gabarit est clair. Le fichier se remplit en 2 minutes à partir de 3 phrases.
+- **Coincé** :
+  1. « 5 questions, une par une » : 5 allers-retours, soit environ 5 minutes de séance pour des questions fermées. L'outil de questions de Claude en affiche jusqu'à 4 d'un coup, avec des choix.
+  2. Ici, Claude jouait Inès : il a tranché les réponses à partir du brief (pas de vraie interaction).
+  3. Le prompt ne dit pas que les choix déjà arrêtés (pas de connexion en V1, mobile d'abord) doivent être repris tels quels. Sans cette consigne, Claude risque de reposer la question.
+- **Prompt corrigé** :
+```
+Voici mon intention : <problème, pour qui, à quoi je verrai que c'est réussi>.
+Déjà décidé : <ex. pas de connexion en version 1, téléphone d'abord>.
+Pose-moi au maximum 5 questions fermées, regroupées en une seule fois, avec des
+choix proposés. Puis remplis docs/1-INTENTION.md, pousse-le sur main et montre-le
+moi. Ne code rien.
+```
+
+### Prompt 2 : la spécification
+- **Passé** : la structure écrans / champs / règles / données / critères « Étant donné, Quand, Alors » colle exactement au métier d'Inès. Les 11 critères reprennent le plan de test de la page 8 et l'étendent (transitions interdites, photo lourde, droits).
+- **Coincé** :
+  1. Le prompt ne demande pas de numéroter les critères en lien avec les tests. Sans ce lien, le tableau final « critère / réussi / échoué » du prompt 4 est difficile à relier.
+  2. Rien n'interdit une spec trop large : Claude a dû se limiter lui-même au hors périmètre de l'intention.
+- **Prompt corrigé** :
+```
+À partir de docs/1-INTENTION.md validé, remplis docs/2-SPEC.md : écrans, champs
+(type, obligatoire, règle), règles métier (statuts, droits, e-mails), données
+Supabase et critères d'acceptation numérotés C1, C2… au format « Étant donné /
+Quand / Alors », chacun vérifiable par un test automatique. Respecte le hors
+périmètre de l'intention. Liste dans « Questions ouvertes » tout ce que tu as dû
+supposer. Pousse le fichier. Ne code rien.
+```
+
+### Prompt 3 : le design
+- **Passé** : le design a été fait par un sous-agent designer (première version, HTML/CSS, contrastes et 48 px vérifiés par script), puis refait dans **Claude Design** (canevas https://claude.ai/artifact/GXcxCSDVsrBZVnNxfMMLTQ) à la demande de Houssam. C'est cette seconde version qui est retenue. `docs/3-DESIGN.md` reprend les jetons du canevas, avec les contrastes mesurés par script (et non estimés).
+- **Coincé** :
+  1. « crée une maquette de chaque écran en artefact » ne dit pas lequel. Le premier passage a produit des fichiers HTML dans le dépôt, pas un canevas Claude Design ; Houssam a dû le redemander. Il faut nommer **Claude Design** dans le prompt.
+  2. Claude Design propose d'utiliser un design system du compte. Le seul visible (« Certivia ») était une autre marque. Le prompt doit dire « sans design system » ou en nommer un.
+  3. Premiers contrastes écrits « de tête » dans le document : deux valeurs étaient fausses (vert 10,4:1 au lieu de 9,9:1, rouge 6,6:1 au lieu de 6,8:1). Exiger la mesure par script.
+  4. Le canevas est privé par défaut : Inès doit le partager pour le montrer.
+- **Prompt corrigé** :
+```
+Lance un sous-agent designer. À partir de docs/2-SPEC.md validé, il crée dans
+Claude Design (type « Design », sans design system) un canevas avec chaque écran
+en 390 × 844, dans un style sobre <ex. : comme Vercel ou Supabase>. Il remplit
+docs/3-DESIGN.md (couleurs avec contrastes MESURÉS par script, typographie,
+espacements, composants, états vide / chargement / erreur / succès, règles mobile,
+lien du canevas). Il tranche les choix de style et me les explique en 5 lignes.
+Pousse le fichier. Ne code pas l'application.
+```
+
+### Écarts entre le modèle `formation-modele` et ce passage
+- `CLAUDE.md` du modèle : « Connecteur Vercel : ne jamais passer `teamId` ni `slug` (403) ». Constaté ici : la **création** de projet échoue en 403 avec ou sans `teamId`. Il faut prévoir la création à la main (vercel.com/new) dans la méthode, à l'étape 4.
+- `CLAUDE.md` du modèle : « Mise en ligne : Vercel (connecteur Vercel) ». Le connecteur ne voyait même pas le projet créé à la main (`list_projects` vide). Les journaux de déploiement ne sont donc pas consultables par Claude sur ce compte.
+- Le modèle parle de `JOURNAL.md`, ce dépôt de `JOURNAL-FORMATION.md` : harmoniser.
+- `.claude/settings.json` du modèle : si la règle `deny` est `Read(./.env.*)`, elle bloque aussi `.env.example`, que le modèle demande pourtant d'utiliser.
+
+---
+
 ## Ce qu'Inès doit préparer en plus de sa checklist
 
 _complété en fin de passage._

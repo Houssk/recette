@@ -392,7 +392,7 @@ a { color: var(--primary); }
   --bg: #0a0a0a;
   --surface: #111111;
   --ink: #ededed;              /* 16,9:1 sur --bg */
-  --ink-2: #a1a1a1;            /* 7,6:1 sur --bg */
+  --ink-2: #a1a1a1;            /* 7,7:1 sur --bg */
   --navy: #ededed;
   --border: #262626;
   --border-strong: #3d3d3d;
@@ -401,10 +401,10 @@ a { color: var(--primary); }
   --primary-tint: #1a1a1a;
   --primary-ink: #ededed;
   --on-primary: #0a0a0a;
-  --success: #3ecf8e;          /* 10,4:1 sur --bg */
+  --success: #3ecf8e;          /* 9,9:1 sur --bg */
   --success-bg: rgba(62, 207, 142, 0.12);
   --success-ink: #3ecf8e;
-  --danger: #ff6369;           /* 6,6:1 sur --bg */
+  --danger: #ff6369;           /* 6,8:1 sur --bg */
   --danger-bg: rgba(229, 72, 77, 0.14);
   --danger-ink: #ff6369;
   --warning: #f5a524;
