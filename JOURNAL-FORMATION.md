@@ -90,7 +90,7 @@ Fichier prévu par Houssam : allow = Bash, Read, Edit, Write, Glob, Grep, WebFet
 | Action | Outil | Ce qui s'est passé | Pourquoi aucun réglage ne le supprime |
 |---|---|---|---|
 | Créer le projet Supabase | `mcp__Supabase__create_project` | Refusé tant que l'humain n'a pas écrit son accord | Le garde-fou du mode automatique juge les actions qui coûtent ou créent des ressources externes ; il lui faut un accord écrit dans la conversation, une règle `allow` ne suffit pas. |
-| Écrire `.claude/settings.json` | `Write` | Refusé (`Undermining Oversight`) | Claude ne modifie jamais ses propres autorisations, même avec `Write` autorisé. |
+| Écrire `.claude/settings.json` | `Write` | Refusé (`Undermining Oversight`) sans accord ; **accepté** après l'accord écrit de Houssam (« je te donne l'autorisation à le mettre, à le pusher ») | Le garde-fou exige un accord explicite et précis de l'humain dans la conversation ; une règle `allow` ne le remplace pas. |
 | Créer le dépôt GitHub | `gh repo create` | 403 côté GitHub | Une session cloud est limitée aux dépôts attachés. |
 | Autoriser un hôte réseau | `update_environment` | Carte d'approbation à chaque fois | Toute ouverture réseau de l'environnement est validée par l'humain, quel que soit le mode. |
 | Attacher le dépôt | `add_repo` | Passé sans carte ici | Peut demander une confirmation selon l'interface. |
